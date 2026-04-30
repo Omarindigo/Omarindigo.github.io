@@ -58,7 +58,7 @@
         .hero-content {
             position: relative;
             z-index: 1;
-            padding: 60px 20px 0;
+            padding: 0 20px;
         }
         .hero-content h1 {
             font-size: 4.5rem;
@@ -94,64 +94,7 @@
             0%, 100% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
         }
-        
-        /* Top Navigation */
-        .top-nav {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%;
-            z-index: 1000;
-            padding: 15px 20px;
-            background: rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(0, 240, 255, 0.15);
-        }
-        .top-nav-inner {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        .top-nav .nav-brand {
-            font-size: 1.1rem;
-            font-weight: 800;
-            color: #00f0ff;
-            text-decoration: none;
-            letter-spacing: -0.5px;
-        }
-        .top-nav-links {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-        .top-nav-links a {
-            padding: 6px 14px;
-            color: rgba(255, 255, 255, 0.85);
-            text-decoration: none;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s;
-            letter-spacing: 0.5px;
-        }
-        .top-nav-links a:hover {
-            background: rgba(0, 240, 255, 0.15);
-            border-color: rgba(0, 240, 255, 0.5);
-            color: #00f0ff;
-        }
-        .top-nav-links .download-btn {
-            background: rgba(0, 240, 255, 0.15);
-            border-color: rgba(0, 240, 255, 0.4);
-            color: #00f0ff;
-            font-weight: 700;
-        }
-        
-        /* Hero content links (hidden since nav is at top) */
+        .hero-links { display: flex; gap: 15px; justify-content: center; margin-top: 40px; flex-wrap: wrap; }
         .hero-links a {
             padding: 10px 22px;
             background: rgba(0,0,0,0.3);
@@ -360,22 +303,6 @@
     </style>
 </head>
 <body>
-    <!-- Top Navigation -->
-    <nav class="top-nav">
-        <div class="top-nav-inner">
-            <a href="#" class="nav-brand">OB</a>
-            <div class="top-nav-links">
-                <a href="#resume">Resume</a>
-                <a href="#portfolio">Portfolio</a>
-                <a href="#publications">Conferences</a>
-                <a href="#statement">Artist Statement</a>
-                <a href="#interests">Interests</a>
-                <a href="#contact">Contact</a>
-                <a href="Omar.Batista.ResumeCV.pdf" class="download-btn" download>Resume PDF</a>
-            </div>
-        </div>
-    </nav>
-
     <!-- Hero -->
     <header class="hero">
         <div id="hero-canvas-container"></div>
@@ -383,6 +310,15 @@
             <h1>Omar Batista</h1>
             <p class="subtitle">Visual Artist, Researcher & AI Engineer</p>
             <p class="tagline">Bridging the gap between AI technologies and media through visual storytelling, aesthetic exploration, and embodied human-machine interaction.</p>
+            <div class="hero-links">
+                <a href="#resume">Resume</a>
+                <a href="#portfolio">Portfolio</a>
+                <a href="#publications">Conferences</a>
+                <a href="#statement">Artist Statement</a>
+                <a href="#interests">Interests</a>
+                <a href="#contact">Contact</a>
+                <a href="Omar.Batista.ResumeCV.pdf" class="download-btn" download>Download Resume PDF</a>
+            </div>
         </div>
     </header>
     
