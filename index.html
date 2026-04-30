@@ -59,19 +59,41 @@
             position: relative;
             z-index: 1;
             padding: 0 20px;
-            color: white;
+        }
+        .hero-content h1 {
+            font-size: 4.5rem;
+            font-weight: 900;
+            letter-spacing: -2px;
+            background: linear-gradient(135deg, #00f0ff, #64b5f6, #00f0ff, #ff6ec7);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: heroGradient 6s ease infinite;
+            text-shadow: none;
+            line-height: 1.1;
         }
         .hero-content .subtitle {
-            color: rgba(255,255,255,0.9);
-            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            font-size: 1.5rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(0, 240, 255, 0.8);
+            margin-top: 10px;
+            margin-bottom: 20px;
         }
         .hero-content .tagline {
-            color: rgba(255,255,255,0.85);
-            text-shadow: 0 1px 6px rgba(0,0,0,0.3);
+            font-size: 1.05rem;
+            font-weight: 300;
+            max-width: 650px;
+            margin: 0 auto;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
         }
-        .hero h1 { font-size: 3rem; margin-bottom: 15px; font-weight: 800; letter-spacing: -1px; color: white; }
-        .hero .subtitle { font-size: 1.3rem; opacity: 0.9; margin-bottom: 25px; color: white; }
-        .hero .tagline { font-size: 1rem; opacity: 0.8; max-width: 700px; margin: 0 auto; color: white; }
+        @keyframes heroGradient {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
         .hero-links { display: flex; gap: 15px; justify-content: center; margin-top: 30px; flex-wrap: wrap; }
         .hero-links a {
             padding: 10px 22px;
