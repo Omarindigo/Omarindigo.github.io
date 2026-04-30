@@ -269,12 +269,25 @@
             border: 1px solid rgba(255,255,255,0.15);
             text-align: center;
             transition: transform 0.2s, border-color 0.3s;
+            position: relative;
+            z-index: 1;
         }
         .contact-card:hover { transform: translateY(-3px); border-color: rgba(255,255,255,0.35); }
         .contact-card .icon { font-size: 2rem; margin-bottom: 10px; color: #ffffff; }
         .contact-card h4 { color: #ffffff; margin-bottom: 5px; }
-        .contact-card a { color: #ffffff; text-decoration: none; }
-        .contact-card a:hover { text-decoration: underline; }
+        .contact-card a {
+            color: #ffffff;
+            text-decoration: none;
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 6px;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: background 0.2s;
+        }
+        .contact-card a:hover {
+            background: rgba(255,255,255,0.12);
+            border-color: rgba(255,255,255,0.4);
+        }
         
         /* Footer */
         footer {
@@ -700,39 +713,39 @@
             
             <div class="contact-grid">
                 <div class="contact-card">
-                    <div class="icon" style="color: var(--accent);">
+                    <div class="icon">
                         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
                     </div>
                     <h4>Email</h4>
-                    <a href="mailto:Omarbatista1074@gmail.com">Omarbatista1074@gmail.com</a>
+                    <a href="mailto:Omarbatista1074@gmail.com">Send Email</a>
                 </div>
                 <div class="contact-card">
-                    <div class="icon" style="color: var(--accent);">
+                    <div class="icon">
                         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
                     </div>
-                    <h4>Parsons Website</h4>
-                    <a href="http://b.parsons.edu/~batio813/" target="_blank">b.parsons.edu/~batio813</a>
+                    <h4>Website</h4>
+                    <a href="http://b.parsons.edu/~batio813/" target="_blank">Visit Site</a>
                 </div>
                 <div class="contact-card">
-                    <div class="icon" style="color: var(--accent);">
+                    <div class="icon">
                         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
                     </div>
                     <h4>LinkedIn</h4>
-                    <a href="https://linkedin.com/in/omaribatista" target="_blank">linkedin.com/in/omaribatista</a>
+                    <a href="https://linkedin.com/in/omaribatista" target="_blank">View Profile</a>
                 </div>
                 <div class="contact-card">
-                    <div class="icon" style="color: var(--accent);">
+                    <div class="icon">
                         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
                     </div>
                     <h4>GitHub</h4>
-                    <a href="https://github.com/Omarindigo" target="_blank">github.com/Omarindigo</a>
+                    <a href="https://github.com/Omarindigo" target="_blank">View Repositories</a>
                 </div>
                 <div class="contact-card">
-                    <div class="icon" style="color: var(--accent);">
+                    <div class="icon">
                         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
                     </div>
                     <h4>Vimeo</h4>
-                    <a href="https://vimeo.com/user207865109" target="_blank">vimeo.com/user207865109</a>
+                    <a href="https://vimeo.com/user207865109" target="_blank">Watch Videos</a>
                 </div>
             </div>
         </div>
