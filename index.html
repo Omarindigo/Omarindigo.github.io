@@ -34,12 +34,13 @@
         .hero {
             position: relative;
             overflow: hidden;
+            min-height: 420px;
             padding: 80px 20px 60px;
             text-align: center;
         }
         #hero-canvas-container {
             position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
+            top: 0; left: 0; width: 100%; height: 100%;
             z-index: 0;
         }
         #hero-canvas-container canvas {
@@ -722,16 +723,18 @@
     }
 
     function setup() {
-        const container = document.getElementById('hero-canvas-container')
-        heroCanvas = createCanvas(container.offsetWidth, container.offsetHeight)
+        const hero = document.querySelector('.hero')
+        const w = hero.offsetWidth
+        const h = hero.offsetHeight
+        heroCanvas = createCanvas(w, h)
         heroCanvas.parent('hero-canvas-container')
         noStroke()
         initGrid()
     }
 
     function windowResized() {
-        const container = document.getElementById('hero-canvas-container')
-        if (container) resizeCanvas(container.offsetWidth, container.offsetHeight)
+        const hero = document.querySelector('.hero')
+        if (hero) resizeCanvas(hero.offsetWidth, hero.offsetHeight)
     }
 
     function draw() {
