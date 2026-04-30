@@ -213,20 +213,23 @@
         .project-card .card-links a:hover { background: var(--accent-hover); }
         .project-card .card-links a.secondary { background: var(--bg); color: var(--text); border: 1px solid var(--border); }
         .project-card .card-links a.secondary:hover { background: var(--border); }
-        .featured-video {
-            max-width: 50%;
-            margin: 0 auto 30px;
-            border-radius: 12px;
-            overflow: hidden;
-            background: var(--card);
-            border: 1px solid var(--border);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        .sim-real-card {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
         }
-        .featured-video video {
-            width: 100%;
-            height: auto;
-            display: block;
+        .sim-real-video {
             background: #000;
+            min-height: 300px;
+        }
+        .sim-real-video video {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+        }
+        @media (max-width: 768px) {
+            .sim-real-card { grid-template-columns: 1fr; }
         }
         
         /* Publications & Exhibitions */
@@ -471,13 +474,6 @@
             <h2 class="section-title">Portfolio</h2>
             <p class="section-desc">Selected projects spanning AI research, generative art, interactive experiences, and computer vision.</p>
             
-            <div class="featured-video">
-                <video autoplay loop muted playsinline>
-                    <source src="video-project-1.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
-            
             <div class="portfolio-grid">
                 <!-- Bio_Extasis -->
                 <div class="project-card">
@@ -494,16 +490,23 @@
                 </div>
                 
                 <!-- Sim-to-Real -->
-                <div class="project-card">
-                    <div class="card-header">
-                        <h3>Sim-to-Real Transfer Learning R&D</h3>
-                        <span class="tech">PyTorch · MuJoCo · Isaac Sim · ROS · Domain Randomization</span>
+                <div class="project-card sim-real-card">
+                    <div class="sim-real-video">
+                        <video autoplay loop muted playsinline>
+                            <source src="video-project-1.mp4" type="video/mp4">
+                        </video>
                     </div>
-                    <div class="card-body">
-                        <p>Developing sim-to-real transfer learning methods that use machine learning to generate expressive movement in simulation, deployed onto physical humanoid robots. Repositions robotics as a medium for visual and performative art, emphasizing the interplay between computation, embodiment, and affect.</p>
-                        <div class="card-links">
-                            <a href="https://github.com/Omarindigo" target="_blank">GitHub</a>
-                            <a href="#interests" class="secondary">Learn More</a>
+                    <div class="sim-real-body">
+                        <div class="card-header">
+                            <h3>Sim-to-Real Transfer Learning R&D</h3>
+                            <span class="tech">PyTorch · MuJoCo · Isaac Sim · ROS · Domain Randomization</span>
+                        </div>
+                        <div class="card-body">
+                            <p>I am in the process of developing Sim-to-Real Transfer Learning methods that use machine learning to generate expressive movement in simulation, which I then deploy onto physical humanoid robots. This research repositions robotics as a medium for visual and performative art, emphasizing the interplay between computation, embodiment, and affect.</p>
+                            <div class="card-links">
+                                <a href="https://github.com/Omarindigo" target="_blank">GitHub</a>
+                                <a href="#interests" class="secondary">Learn More</a>
+                            </div>
                         </div>
                     </div>
                 </div>
