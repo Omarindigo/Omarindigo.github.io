@@ -754,9 +754,8 @@
     <script>
     const PX   = 32
     const STOPS = [
-        [30, 0, 180], [0, 60, 255], [0, 120, 255], [0, 180, 200],
-        [0, 229, 255], [255, 140, 0], [255, 200, 0], [255, 255, 0],
-        [204, 0, 204], [255, 0, 170]
+        [11, 1, 145], [30, 20, 180], [60, 60, 210], [100, 120, 230],
+        [160, 170, 245], [200, 210, 255], [230, 235, 255], [255, 255, 255]
     ]
     let grid = []
     let heroCanvas
@@ -804,9 +803,9 @@
     function draw() {
         const bt = (sin(frameCount * 0.008) + 1) / 2
         const bt2 = (sin(frameCount * 0.005 + 2) + 1) / 2
-        const bgR = lerp(lerp(0, 102, bt), 0, bt2)
-        const bgG = lerp(lerp(0, 0, bt), 80, bt2)
-        const bgB = lerp(lerp(138, 255, bt), 239, bt2)
+        const bgR = lerp(lerp(11, 20, bt), 11, bt2)
+        const bgG = lerp(lerp(1, 10, bt), 1, bt2)
+        const bgB = lerp(lerp(145, 170, bt), 145, bt2)
         background(bgR, bgG, bgB)
 
         const t = frameCount * 0.012
