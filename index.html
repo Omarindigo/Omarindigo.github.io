@@ -766,8 +766,8 @@
     <script>
     const PX   = 32
     const STOPS = [
-        [11, 1, 145], [30, 20, 180], [60, 60, 210], [100, 120, 230],
-        [160, 170, 245], [200, 210, 255], [230, 235, 255], [255, 255, 255]
+        [3, 0, 30], [6, 2, 55], [10, 8, 80], [15, 20, 110],
+        [25, 40, 140], [40, 60, 170], [60, 90, 200], [90, 130, 230]
     ]
     let grid = []
     let heroCanvas
@@ -857,7 +857,7 @@
                 const blendR = lerp(rr, hr, 0.5)
                 const blendG = lerp(gg, hg, 0.5)
                 const blendB = lerp(bb, hb, 0.5)
-                const alpha = map(val, 0, 1, 20, 255) * scanline
+                const alpha = map(val, 0, 1, 8, 140) * scanline
                 fill(blendR, blendG, blendB, alpha)
                 rect(drawC * PX, r * PX, PX, PX)
             }
