@@ -36,27 +36,26 @@
         .hero {
             position: relative;
             overflow: hidden;
-            width: 100vw;
-            left: 50%;
-            margin-left: -50vw;
+            width: 100%;
             min-height: 100vh;
-            padding: 80px 0 60px;
+            padding: 80px 20px 60px;
             text-align: center;
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
         #hero-canvas-container {
-            position: absolute;
-            inset: 0;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw;
+            height: 100vh;
             z-index: 0;
+            pointer-events: none;
         }
         #hero-canvas-container canvas {
             display: block;
-            width: 100% !important;
-            height: 100% !important;
-            position: absolute;
-            top: 0; left: 0;
+            width: 100vw !important;
+            height: 100vh !important;
         }
         .hero-content {
             position: relative;
@@ -696,9 +695,7 @@
     </section>
     
     <script>
-    const PX = 32
-    const COLS_N = 20
-    const ROWS_N = 25
+    const PX   = 32
     const STOPS = [
         [30, 0, 180], [0, 60, 255], [0, 120, 255], [0, 180, 200],
         [0, 229, 255], [255, 140, 0], [255, 200, 0], [255, 255, 0],
@@ -706,6 +703,7 @@
     ]
     let grid = []
     let heroCanvas
+    let COLS_N, ROWS_N
 
     function gradCol(t) {
         const s = constrain(t, 0, 1) * (STOPS.length - 1)
@@ -718,6 +716,8 @@
 
     function initGrid() {
         grid = []
+        COLS_N = ceil(width / PX)
+        ROWS_N = ceil(height / PX)
         for (let r = 0; r < ROWS_N; r++) {
             grid.push([])
             for (let c = 0; c < COLS_N; c++) {
@@ -739,6 +739,7 @@
 
     function windowResized() {
         resizeCanvas(window.innerWidth, window.innerHeight)
+        initGrid()
     }
 
     function draw() {
@@ -794,56 +795,6 @@
                 fill(blendR, blendG, blendB, alpha)
                 rect(drawC * PX, r * PX, PX, PX)
             }
-        }
-        drawTitle()
-    }
-
-    function drawTitle() {
-        const line1 = 'OMAR BATISTA'
-        const line2 = 'Visual Artist, Researcher & AI Engineer'
-        const tSize = min(width * 0.11, 86)
-        const tY1 = height * 0.09
-        const tY2 = height * 0.16
-
-        noStroke()
-        textAlign(LEFT)
-        textFont('Arial')
-
-        textStyle(BOLDITALIC)
-        textSize(tSize)
-        let px = width * 0.03
-        for (let i = 0; i < line1.length; i++) {
-            const tt = i / max(line1.length - 1, 1)
-            const [r, g, b] = gradCol(tt)
-            fill(r, g, b, 35)
-            textSize(tSize + 16)
-            text(line1[i], px - 3, tY1 + 2)
-            fill(r, g, b, 80)
-            textSize(tSize + 7)
-            text(line1[i], px - 1, tY1 + 1)
-            fill(100, 240, 230, 255)
-            textSize(tSize)
-            text(line1[i], px, tY1)
-            px += textWidth(line1[i])
-        }
-
-        textStyle(NORMAL)
-        const sSize = tSize * 0.56
-        textSize(sSize)
-        let px2 = width * 0.03
-        for (let i = 0; i < line2.length; i++) {
-            const tt = i / max(line2.length - 1, 1)
-            const [r, g, b] = gradCol(0.3 + tt * 0.7)
-            fill(r, g, b, 35)
-            textSize(sSize + 8)
-            text(line2[i], px2 - 3, tY2 + 2)
-            fill(r, g, b, 80)
-            textSize(sSize + 3)
-            text(line2[i], px2 - 1, tY2 + 1)
-            fill(100, 240, 230, 255)
-            textSize(sSize)
-            text(line2[i], px2, tY2)
-            px2 += textWidth(line2[i])
         }
     }
     </script>
