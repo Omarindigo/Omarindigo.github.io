@@ -3,216 +3,616 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Omar Batista - Designer, Educator & AI Researcher</title>
+    <title>Omar Batista - Visual Artist, Researcher & AI Engineer</title>
     <style>
         /* Base Styles */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 1000px; margin: 0 auto; padding: 20px; }
+        :root {
+            --primary: #0f172a;
+            --accent: #6366f1;
+            --accent-hover: #4f46e5;
+            --text: #334155;
+            --text-light: #64748b;
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --border: #e2e8f0;
+            --gradient: linear-gradient(135deg, #6366f1, #8b5cf6, #a78bfa);
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.7;
+            color: var(--text);
+            background: var(--bg);
+        }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
         
-        /* Header */
-        header { text-align: center; padding: 40px 20px; background: #f5f5f5; border-radius: 8px; margin-bottom: 30px; }
-        header h1 { font-size: 2.5rem; margin-bottom: 10px; color: #2c3e50; }
-        header p { font-size: 1.2rem; color: #7f8c8d; }
+        /* Header / Hero */
+        .hero {
+            background: var(--gradient);
+            color: white;
+            padding: 80px 20px 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.05" d="M0,96L48,112C96,128,192,160,288,165.3C384,171,480,149,576,122.7C672,96,768,64,864,69.3C960,75,1056,117,1152,138.7C1248,160,1344,160,1392,160L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
+            background-size: cover;
+        }
+        .hero h1 { font-size: 3rem; margin-bottom: 15px; font-weight: 800; letter-spacing: -1px; position: relative; }
+        .hero .subtitle { font-size: 1.3rem; opacity: 0.9; margin-bottom: 25px; position: relative; }
+        .hero .tagline { font-size: 1rem; opacity: 0.8; max-width: 700px; margin: 0 auto; position: relative; }
+        .hero-links { display: flex; gap: 15px; justify-content: center; margin-top: 30px; flex-wrap: wrap; position: relative; }
+        .hero-links a {
+            padding: 10px 22px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            border: 1px solid rgba(255,255,255,0.3);
+            transition: all 0.3s;
+        }
+        .hero-links a:hover { background: white; color: var(--accent); }
+        .hero-links .download-btn {
+            background: white;
+            color: var(--accent);
+            border: none;
+            font-weight: 700;
+        }
+        .hero-links .download-btn:hover { background: rgba(255,255,255,0.9); }
         
         /* Navigation */
-        nav { display: flex; justify-content: center; gap: 20px; margin-bottom: 30px; flex-wrap: wrap; }
-        nav a { text-decoration: none; color: #3498db; font-weight: 500; padding: 8px 16px; border-radius: 4px; }
-        nav a:hover { background: #3498db; color: white; }
+        .nav {
+            position: sticky;
+            top: 0;
+            background: white;
+            border-bottom: 1px solid var(--border);
+            padding: 15px 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .nav ul { display: flex; justify-content: center; gap: 30px; list-style: none; flex-wrap: wrap; }
+        .nav a { text-decoration: none; color: var(--text-light); font-weight: 600; font-size: 0.95rem; transition: color 0.2s; }
+        .nav a:hover, .nav a.active { color: var(--accent); }
         
         /* Sections */
-        section { margin-bottom: 40px; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        h2 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; margin-bottom: 20px; }
+        section { padding: 60px 0; }
+        .section-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+            margin-top: 10px;
+        }
+        .section-desc { color: var(--text-light); margin-bottom: 40px; max-width: 700px; font-size: 1.1rem; }
         
         /* Resume Section */
-        .resume-item { margin-bottom: 20px; }
-        .resume-item h3 { color: #2980b9; margin-bottom: 5px; }
-        .resume-item p { color: #555; margin-bottom: 5px; }
-        .skills { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
-        .skill-tag { background: #ecf0f1; padding: 5px 10px; border-radius: 4px; font-size: 0.9rem; }
+        .timeline { position: relative; padding-left: 30px; }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--border);
+            border-radius: 2px;
+        }
+        .timeline-item { position: relative; margin-bottom: 30px; }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -34px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: 3px solid white;
+            box-shadow: 0 0 0 2px var(--accent);
+        }
+        .timeline-item h3 { color: var(--primary); font-size: 1.1rem; margin-bottom: 5px; }
+        .timeline-item .meta { color: var(--accent); font-size: 0.9rem; font-weight: 600; margin-bottom: 8px; }
+        .timeline-item p { color: var(--text-light); margin-bottom: 5px; }
+        
+        /* Skills */
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-top: 30px; }
+        .skill-category { background: var(--card); padding: 20px; border-radius: 12px; border: 1px solid var(--border); }
+        .skill-category h4 { color: var(--primary); margin-bottom: 10px; font-size: 1rem; }
+        .skill-tag {
+            display: inline-block;
+            background: var(--bg);
+            color: var(--text);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin: 3px;
+            border: 1px solid var(--border);
+        }
         
         /* Portfolio Section */
-        .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
-        .portfolio-card { border: 1px solid #ecf0f1; border-radius: 8px; padding: 20px; }
-        .portfolio-card h3 { color: #2980b9; margin-bottom: 10px; }
-        .portfolio-card a { color: #3498db; text-decoration: none; }
-        .portfolio-card a:hover { text-decoration: underline; }
+        .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 25px; }
+        .project-card {
+            background: var(--card);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .project-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .project-card .card-header {
+            background: var(--gradient);
+            padding: 25px 20px;
+            color: white;
+        }
+        .project-card .card-header h3 { font-size: 1.3rem; margin-bottom: 5px; }
+        .project-card .card-header .tech { font-size: 0.85rem; opacity: 0.8; }
+        .project-card .card-body { padding: 20px; }
+        .project-card .card-body p { color: var(--text-light); margin-bottom: 15px; }
+        .project-card .card-links { display: flex; gap: 10px; }
+        .project-card .card-links a {
+            padding: 8px 16px;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+        .project-card .card-links a:hover { background: var(--accent-hover); }
+        .project-card .card-links a.secondary { background: var(--bg); color: var(--text); border: 1px solid var(--border); }
+        .project-card .card-links a.secondary:hover { background: var(--border); }
+        
+        /* Publications & Exhibitions */
+        .pub-list { list-style: none; }
+        .pub-list li {
+            background: var(--card);
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--accent);
+        }
+        .pub-list li h4 { color: var(--primary); margin-bottom: 5px; }
+        .pub-list li .venue { color: var(--accent); font-size: 0.9rem; font-weight: 600; margin-bottom: 8px; }
+        .pub-list li p { color: var(--text-light); }
+        .pub-list li a { color: var(--accent); }
+        
+        /* Interests Section */
+        .interests-content {
+            background: var(--card);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+        .interests-content p { color: var(--text-light); margin-bottom: 15px; font-size: 1.05rem; }
+        .interests-content strong { color: var(--primary); }
         
         /* Contact Section */
-        .contact-links { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 20px; }
-        .contact-links a { padding: 10px 20px; background: #3498db; color: white; text-decoration: none; border-radius: 4px; }
-        .contact-links a:hover { background: #2980b9; }
+        .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
+        .contact-card {
+            background: var(--card);
+            padding: 25px 20px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            text-align: center;
+            transition: transform 0.2s;
+        }
+        .contact-card:hover { transform: translateY(-3px); }
+        .contact-card .icon { font-size: 2rem; margin-bottom: 10px; }
+        .contact-card h4 { color: var(--primary); margin-bottom: 5px; }
+        .contact-card a { color: var(--accent); text-decoration: none; }
+        .contact-card a:hover { text-decoration: underline; }
         
-        /* Mobile Responsiveness */
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            background: var(--primary);
+            color: rgba(255,255,255,0.7);
+        }
+        footer p { font-size: 0.9rem; }
+        
+        /* Education */
+        .edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 40px; }
+        .edu-card {
+            background: var(--card);
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            border-top: 4px solid var(--accent);
+        }
+        .edu-card h3 { color: var(--primary); margin-bottom: 5px; }
+        .edu-card .degree { color: var(--accent); font-weight: 600; margin-bottom: 5px; }
+        .edu-card .gpa { color: var(--text-light); font-size: 0.9rem; }
+        
+        /* Mobile */
         @media (max-width: 768px) {
-            header h1 { font-size: 2rem; }
+            .hero h1 { font-size: 2rem; }
+            .hero .subtitle { font-size: 1rem; }
             .portfolio-grid { grid-template-columns: 1fr; }
-            nav { flex-direction: column; align-items: center; }
+            .nav ul { gap: 15px; }
+            .skills-grid { grid-template-columns: 1fr; }
+            .timeline { padding-left: 20px; }
         }
     </style>
 </head>
 <body>
-    <header>
+    <!-- Hero -->
+    <header class="hero">
         <h1>Omar Batista</h1>
-        <p>Designer, Educator & AI Researcher | Parsons School of Design</p>
+        <p class="subtitle">Visual Artist, Researcher & AI Engineer</p>
+        <p class="tagline">Bridging the gap between AI technologies and media through visual storytelling, aesthetic exploration, and embodied human-machine interaction.</p>
+        <div class="hero-links">
+            <a href="#resume">Resume</a>
+            <a href="#portfolio">Portfolio</a>
+            <a href="#publications">Conferences</a>
+            <a href="#interests">Interests</a>
+            <a href="#contact">Contact</a>
+            <a href="Omar.Batista.ResumeCV.pdf" class="download-btn" download>Download Resume PDF</a>
+        </div>
     </header>
     
-    <nav>
-        <a href="#resume">Resume</a>
-        <a href="#portfolio">Portfolio</a>
-        <a href="#interests">What I Like to Do</a>
-        <a href="#contact">Contact</a>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <ul>
+                <li><a href="#resume">Resume</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#publications">Conferences</a></li>
+                <li><a href="#interests">What I Like to Do</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
     </nav>
     
-    <!-- 1. Resume Section -->
+    <!-- Resume Section -->
     <section id="resume">
-        <h2>Resume</h2>
-        <div class="resume-item">
-            <h3>Education</h3>
-            <p><strong>The New School, Parsons</strong> - Master of Arts in Media Studies</p>
-            <p>Cumulative GPA: 4.00</p>
-            <p><strong>CUNY, Brooklyn College</strong> - Bachelor of Science in Biology (Minor: Chemistry)</p>
-            <p>Cumulative GPA: 3.20</p>
-        </div>
-        <div class="resume-item">
-            <h3>Technical Skills</h3>
-            <div class="skills">
-                <span class="skill-tag">Full-Stack Development</span>
-                <span class="skill-tag">Software Engineering</span>
-                <span class="skill-tag">Front-End Development</span>
-                <span class="skill-tag">Back-End Development</span>
-                <span class="skill-tag">Web Development</span>
-                <span class="skill-tag">API Integration</span>
-                <span class="skill-tag">Python</span>
-                <span class="skill-tag">JavaScript</span>
-                <span class="skill-tag">C++</span>
-                <span class="skill-tag">C#</span>
-                <span class="skill-tag">HTML</span>
-                <span class="skill-tag">CSS</span>
-                <span class="skill-tag">Node.js</span>
-                <span class="skill-tag">Git</span>
-                <span class="skill-tag">GitHub</span>
-                <span class="skill-tag">Google Cloud Platform</span>
-                <span class="skill-tag">Virtual Machines</span>
-                <span class="skill-tag">CLI</span>
-                <span class="skill-tag">Linux</span>
-                <span class="skill-tag">Ubuntu</span>
-                <span class="skill-tag">Computer Vision</span>
-                <span class="skill-tag">Image Processing</span>
-                <span class="skill-tag">Video Analysis</span>
-                <span class="skill-tag">Machine Learning</span>
-                <span class="skill-tag">Model Evaluation</span>
-                <span class="skill-tag">Neural Networks</span>
-                <span class="skill-tag">Scikit-learn</span>
-                <span class="skill-tag">TensorFlow</span>
-                <span class="skill-tag">Keras</span>
-                <span class="skill-tag">OpenCV</span>
-                <span class="skill-tag">Pandas</span>
-                <span class="skill-tag">NumPy</span>
-                <span class="skill-tag">Matplotlib</span>
-                <span class="skill-tag">Jupyter</span>
-                <span class="skill-tag">Google Colab</span>
-                <span class="skill-tag">Prompt Engineering</span>
-                <span class="skill-tag">LLM Evaluation</span>
-                <span class="skill-tag">Transformer Models</span>
-                <span class="skill-tag">Reinforcement Learning</span>
-                <span class="skill-tag">Digital Animation</span>
-                <span class="skill-tag">Motion Capture</span>
-                <span class="skill-tag">3D Pipelines</span>
-                <span class="skill-tag">Rendering</span>
-                <span class="skill-tag">Cinematography</span>
-                <span class="skill-tag">Videography</span>
-                <span class="skill-tag">Camera Systems</span>
-                <span class="skill-tag">Audio Recording</span>
-                <span class="skill-tag">Editing</span>
-                <span class="skill-tag">Lighting Design</span>
-                <span class="skill-tag">Adobe Creative Suite</span>
-                <span class="skill-tag">DaVinci Resolve</span>
-                <span class="skill-tag">Blender</span>
-                <span class="skill-tag">Unity</span>
-                <span class="skill-tag">TouchDesigner</span>
-                <span class="skill-tag">FFmpeg</span>
-                <span class="skill-tag">Figma</span>
+        <div class="container">
+            <h2 class="section-title">Resume</h2>
+            <p class="section-desc">Education, professional experience, and technical expertise.</p>
+            
+            <h3 style="color: var(--primary); margin-bottom: 20px; font-size: 1.3rem;">Education</h3>
+            <div class="edu-grid">
+                <div class="edu-card">
+                    <h3>The New School, Parsons</h3>
+                    <p class="degree">Master of Arts in Media Studies</p>
+                    <p class="gpa">Cumulative GPA: 4.00</p>
+                </div>
+                <div class="edu-card">
+                    <h3>CUNY, Brooklyn College</h3>
+                    <p class="degree">Bachelor of Science in Biology (Minor: Chemistry)</p>
+                    <p class="gpa">Cumulative GPA: 3.20</p>
+                </div>
             </div>
-        </div>
-        <div class="resume-item">
-            <h3>Experience</h3>
-            <p><strong>Freelance Designer, Strategy and Innovation</strong> - Self-Employed | 2017 – Present</p>
-            <p>Develop pitch decks, visual samples, and narrative frameworks for marketing and strategic initiatives.</p>
-            <p>Create design concepts and communication materials for branding, campaigns, and promotional work.</p>
-            <p>Support projects from concept to final refinement through creative strategy, visual development, and storytelling.</p>
-        </div>
-        <div class="resume-item">
-            <p><strong>WEST X EAST</strong> - September 2024 – Present</p>
-            <p>Produce concept art and storyboards in collaboration with design, social media, and marketing teams.</p>
-            <p>Contribute to visual identity development for brand storytelling across Instagram, TikTok, and newsletter campaigns.</p>
-            <p>Design and refine social media content and templates to maintain brand consistency and support campaign performance.</p>
-        </div>
-        <div class="resume-item">
-            <p><strong>Graduate Teaching Fellow, Teaching Assistant – Intro to Screen Studies</strong></p>
-            <p>The New School, Eugene Lang | August 2023 – December 2023</p>
-            <p>Led weekly discussion sections on cinema history, film analysis, genre, and critical theory.</p>
-            <p>Provided feedback on assignments to strengthen students’ critical thinking and academic writing.</p>
-            <p>Collaborated with the lead professor on lesson planning, course materials, and exam review sessions.</p>
-        </div>
-        <div class="resume-item">
-            <p><strong>Graduate Teaching Fellow, Teaching Assistant – Digital Video Production: Tech Lab</strong></p>
-            <p>The New School, Media Studies | August 2023 – December 2023</p>
-            <p>Guided students through video production, including pre-production, camera work, lighting, sound, and editing.</p>
-            <p>Conducted hands-on workshops in Adobe Premiere, DaVinci Resolve, and other post-production tools.</p>
-            <p>Provided technical support and facilitated critique sessions to improve student projects and creative development.</p>
-        </div>
-        <div class="resume-item">
-            <p><strong>Research Assistant</strong> - Parsons School of Design | May 2023 – July 2023</p>
-            <p>Supported faculty research on integrating AI tools into curriculum through data collection, experimentation, and analysis.</p>
-            <p>Evaluated generative AI platforms for creative and educational use and synthesized findings into actionable insights.</p>
-            <p>Prepared documentation, presentations, and workshop materials to support research communication and workflow clarity.</p>
-        </div>
-        <div class="resume-item">
-            <p><strong>Teacher</strong> - Department of Education | September 2016 – June 2024</p>
-            <p>Delivered instruction in general science and chemistry across middle and high school grade levels.</p>
-            <p>Differentiated instructions to support diverse learners, including students with varied language needs and IEP accommodations.</p>
-            <p>Integrated labs, demonstrations, and digital tools while monitoring student progress and providing timely feedback.</p>
-        </div>
-    </section>
-    
-    <!-- 2. Portfolio Section -->
-    <section id="portfolio">
-        <h2>Portfolio</h2>
-        <div class="portfolio-grid">
-            <div class="portfolio-card">
-                <h3>Media Forensics: Robotics, Simulation, and Intelligence</h3>
-                <p>Practice-based research exploring sim-to-real transfer learning through robotics, computer vision, and simulation to create expressive machine motion and embodied human-machine interaction.</p>
+            
+            <h3 style="color: var(--primary); margin-bottom: 20px; font-size: 1.3rem;">Experience</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>Freelance Designer, Strategy and Innovation</h3>
+                    <p class="meta">Self-Employed | 2017 – Present</p>
+                    <p>Develop pitch decks, visual samples, and narrative frameworks for marketing and strategic initiatives. Create design concepts and communication materials for branding, campaigns, and promotional work.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>Visual Content Producer</h3>
+                    <p class="meta">WEST X EAST | September 2024 – Present</p>
+                    <p>Produce concept art and storyboards in collaboration with design, social media, and marketing teams. Design and refine social media content and templates to maintain brand consistency.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>Graduate Teaching Fellow – Intro to Screen Studies</h3>
+                    <p class="meta">The New School, Eugene Lang | Aug 2023 – Dec 2023</p>
+                    <p>Led weekly discussion sections on cinema history, film analysis, genre, and critical theory. Collaborated with the lead professor on lesson planning and course materials.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>Graduate Teaching Fellow – Digital Video Production</h3>
+                    <p class="meta">The New School, Media Studies | Aug 2023 – Dec 2023</p>
+                    <p>Guided students through video production, including pre-production, camera work, lighting, sound, and editing. Conducted hands-on workshops in Adobe Premiere, DaVinci Resolve.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>Research Assistant</h3>
+                    <p class="meta">Parsons School of Design | May 2023 – July 2023</p>
+                    <p>Supported faculty research on integrating AI tools into curriculum through data collection, experimentation, and analysis. Evaluated generative AI platforms for creative and educational use.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>Teacher</h3>
+                    <p class="meta">Department of Education | Sep 2016 – Jun 2024</p>
+                    <p>Delivered instruction in general science and chemistry across middle and high school grade levels. Integrated labs, demonstrations, and digital tools while monitoring student progress.</p>
+                </div>
             </div>
-            <div class="portfolio-card">
-                <h3>Caribbean Material Culture: Festival, Performance, and Ritual</h3>
-                <p>Research project on Caribbean material culture, festivals, performance, and ritual, examining how masks, costumes, ceremonial objects, and performance traditions function as living archives of heritage and collective memory by organizing bodies, shaping public performance, and preserving cultural knowledge through embodied practice.</p>
+            
+            <h3 style="color: var(--primary); margin: 40px 0 20px; font-size: 1.3rem;">Technical Skills</h3>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h4>Development</h4>
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">C++</span>
+                    <span class="skill-tag">C#</span>
+                    <span class="skill-tag">HTML/CSS</span>
+                    <span class="skill-tag">Node.js</span>
+                    <span class="skill-tag">Full-Stack Dev</span>
+                    <span class="skill-tag">API Integration</span>
+                    <span class="skill-tag">Git/GitHub</span>
+                </div>
+                <div class="skill-category">
+                    <h4>AI & Machine Learning</h4>
+                    <span class="skill-tag">TensorFlow</span>
+                    <span class="skill-tag">Keras</span>
+                    <span class="skill-tag">OpenCV</span>
+                    <span class="skill-tag">Scikit-learn</span>
+                    <span class="skill-tag">Neural Networks</span>
+                    <span class="skill-tag">Transformers</span>
+                    <span class="skill-tag">Reinforcement Learning</span>
+                    <span class="skill-tag">Computer Vision</span>
+                    <span class="skill-tag">LLM Evaluation</span>
+                    <span class="skill-tag">Prompt Engineering</span>
+                    <span class="skill-tag">Stable Diffusion</span>
+                </div>
+                <div class="skill-category">
+                    <h4>Data & Computing</h4>
+                    <span class="skill-tag">Pandas</span>
+                    <span class="skill-tag">NumPy</span>
+                    <span class="skill-tag">Matplotlib</span>
+                    <span class="skill-tag">Jupyter</span>
+                    <span class="skill-tag">Google Colab</span>
+                    <span class="skill-tag">Google Cloud</span>
+                    <span class="skill-tag">Linux/Ubuntu</span>
+                    <span class="skill-tag">CLI</span>
+                </div>
+                <div class="skill-category">
+                    <h4>Creative & Media</h4>
+                    <span class="skill-tag">Blender</span>
+                    <span class="skill-tag">Unity</span>
+                    <span class="skill-tag">TouchDesigner</span>
+                    <span class="skill-tag">DaVinci Resolve</span>
+                    <span class="skill-tag">Adobe Creative Suite</span>
+                    <span class="skill-tag">Figma</span>
+                    <span class="skill-tag">Three.js</span>
+                    <span class="skill-tag">FFmpeg</span>
+                    <span class="skill-tag">Motion Capture</span>
+                    <span class="skill-tag">3D Pipelines</span>
+                    <span class="skill-tag">Videography</span>
+                </div>
             </div>
         </div>
     </section>
     
-    <!-- 3. What You Like to Do -->
-    <section id="interests">
-        <h2>What I Like to Do</h2>
-        <p>I am passionate about exploring the intersection of creativity, technology, and human expression. My work bridges design, education, and artificial intelligence to create meaningful experiences that challenge perceptions and foster innovation.</p>
-        <p>I care about solving complex problems through interdisciplinary approaches - combining artistic vision with technical expertise to develop solutions that are both aesthetically compelling and functionally robust.</p>
-        <p>What excites me most is the opportunity to empower others through education and mentorship, while pushing the boundaries of what's possible at the intersection of art and technology.</p>
+    <!-- Portfolio Section -->
+    <section id="portfolio" style="background: var(--bg);">
+        <div class="container">
+            <h2 class="section-title">Portfolio</h2>
+            <p class="section-desc">Selected projects spanning AI research, generative art, interactive experiences, and computer vision.</p>
+            
+            <div class="portfolio-grid">
+                <!-- Bio_Extasis -->
+                <div class="project-card">
+                    <div class="card-header">
+                        <h3>Bio_Éxtasis</h3>
+                        <span class="tech">OpenCV · Stable Diffusion · Blender · Python · C++</span>
+                    </div>
+                    <div class="card-body">
+                        <p>An experimental animation that harnesses machine learning and AI to explore the sublimity of motion and natural dynamics, including chaos theory, diffusion, and swarm behavior. Three interconnected vignettes take the viewer on a unique journey from "how is it made" to "how does it move?" Published in <em>Digital America</em>, Issue 21 (2024).</p>
+                        <div class="card-links">
+                            <a href="https://www.digitalamerica.org/bio_extasis-omar-batista/" target="_blank">View Project</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sim-to-Real -->
+                <div class="project-card">
+                    <div class="card-header">
+                        <h3>Sim-to-Real Transfer Learning R&D</h3>
+                        <span class="tech">PyTorch · MuJoCo · Isaac Sim · ROS · Domain Randomization</span>
+                    </div>
+                    <div class="card-body">
+                        <p>Developing sim-to-real transfer learning methods that use machine learning to generate expressive movement in simulation, deployed onto physical humanoid robots. Repositions robotics as a medium for visual and performative art, emphasizing the interplay between computation, embodiment, and affect.</p>
+                        <div class="card-links">
+                            <a href="https://github.com/Omarindigo" target="_blank">GitHub</a>
+                            <a href="#interests" class="secondary">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Disobedient Machine -->
+                <div class="project-card">
+                    <div class="card-header">
+                        <h3>Disobedient Machine</h3>
+                        <span class="tech">Three.js · WebGL · Custom Shaders · JavaScript</span>
+                    </div>
+                    <div class="card-body">
+                        <p>An innovative web-based interactive 3D experience exploring themes of autonomous artificial creations within a cyberpunk-inspired digital realm. Drawing from William Gibson's "Neuromancer," featuring interactive spheres with video textures, custom normal/displacement maps, and a dynamic animated background.</p>
+                        <div class="card-links">
+                            <a href="https://github.com/Omarindigo/Disobedient-Machine" target="_blank">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- DOMAIN_EXPANSION_DIFFUSER -->
+                <div class="project-card">
+                    <div class="card-header">
+                        <h3>Domain Expansion Diffuser</h3>
+                        <span class="tech">Python · Video Diffusion · PyTorch</span>
+                    </div>
+                    <div class="card-body">
+                        <p>A promptless video diffusion pipeline trained exclusively on custom footage. Generates evolving visual content without text prompts, creating unique aesthetic outputs through learned motion patterns from source material.</p>
+                        <div class="card-links">
+                            <a href="https://github.com/Omarindigo/DOMAIN_EXPANSION_DIFFUSER" target="_blank">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- AESTHETIC-CREATURES -->
+                <div class="project-card">
+                    <div class="card-header">
+                        <h3>Aesthetic Creatures</h3>
+                        <span class="tech">Python · Generative Models · AI</span>
+                    </div>
+                    <div class="card-body">
+                        <p>Exploration of generative AI techniques applied to creating aesthetic visual forms. Bridges the gap between computational media and natural science through algorithmic generation of organic, creature-like visual structures.</p>
+                        <div class="card-links">
+                            <a href="https://github.com/Omarindigo/AESTHETIC-CREATURES" target="_blank">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Digital Forensic Classifier -->
+                <div class="project-card">
+                    <div class="card-header">
+                        <h3>Digital Forensic Classifier</h3>
+                        <span class="tech">Python · OpenCV · Rule-Based Systems</span>
+                    </div>
+                    <div class="card-body">
+                        <p>A rule-based image matching expert system for digital forensics. Analyzes and classifies images using computer vision techniques, serving as an investigative tool for forensic analysis and evidence categorization.</p>
+                        <div class="card-links">
+                            <a href="https://github.com/Omarindigo/Digital-Forensic-Classifier" target="_blank">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- ARGENT -->
+                <div class="project-card">
+                    <div class="card-header">
+                        <h3>ARGENT</h3>
+                        <span class="tech">TypeScript · Web Development</span>
+                    </div>
+                    <div class="card-body">
+                        <p>Full-stack web application project showcasing modern development practices with TypeScript. Demonstrates proficiency in building interactive web interfaces and backend integration.</p>
+                        <div class="card-links">
+                            <a href="https://github.com/Omarindigo/ARGENT" target="_blank">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- CV Projects -->
+                <div class="project-card">
+                    <div class="card-header">
+                        <h3>Computer Vision Projects</h3>
+                        <span class="tech">Python · OpenCV · Deep Learning</span>
+                    </div>
+                    <div class="card-body">
+                        <p>A collection of computer vision projects demonstrating skills in image processing, object detection, motion segmentation, and visual analysis using modern CV frameworks and techniques.</p>
+                        <div class="card-links">
+                            <a href="https://github.com/Omarindigo/CV_PROJECTS" target="_blank">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
     
-    <!-- 4. Contact Section -->
+    <!-- Conferences, Publications & Showcases -->
+    <section id="publications">
+        <div class="container">
+            <h2 class="section-title">Conferences, Publications & Showcases</h2>
+            <p class="section-desc">Selected screenings, publications, and conference presentations.</p>
+            
+            <ul class="pub-list">
+                <li>
+                    <h4>"Intelligence and Imitation: Mind, Mechanism, and Mimesis"</h4>
+                    <p class="venue">Johns Hopkins University Workshop (2026)</p>
+                    <p>Accepted workshop participant. Proposal selected for presentation in an interdisciplinary workshop on mind, mechanism, and mimesis.</p>
+                    <p><a href="https://philevents.org" target="_blank">philevents.org</a></p>
+                </li>
+                <li>
+                    <h4>"Bio-Éxtasis"</h4>
+                    <p class="venue">Selected for projection program, curated by Sideworld for soup.phl (2026)</p>
+                    <p>Experimental video selected for public screening as part of a live event at Coach Room, West Philadelphia.</p>
+                    <p><a href="https://sideworld.neocities.org/" target="_blank">sideworld.neocities.org</a></p>
+                </li>
+                <li>
+                    <h4>"Bio_extasis"</h4>
+                    <p class="venue">Digital America, Issue 21 (2024)</p>
+                    <p>Experimental video exploring posthuman embodiment and synthetic aesthetics. Published in the premier digital arts journal.</p>
+                    <p><a href="https://www.digitalamerica.org/bio_extasis-omar-batista/" target="_blank">digitalamerica.org</a></p>
+                </li>
+                <li>
+                    <h4>"Scorpius" (11'18", 2023)</h4>
+                    <p class="venue">BAD VIDEO ART FESTIVAL VII, Moscow, Russia (2024)</p>
+                    <p>Selected for international screening of experimental film at the seventh edition of the Bad Video Art Festival.</p>
+                    <p><a href="https://badvideoart.wixsite.com" target="_blank">badvideoart.wixsite.com</a></p>
+                </li>
+                <li>
+                    <h4>"Aesthetic Engines: A Theory in the Kinetics of Generative Sublimity"</h4>
+                    <p class="venue">Featured Artist – Lexiconia: A Lexicon of Generative AI (2024)</p>
+                    <p>Featured artist exploring the intersection of generative AI theory and aesthetic practice.</p>
+                    <p><a href="https://lexiconia.art" target="_blank">lexiconia.art</a></p>
+                </li>
+            </ul>
+        </div>
+    </section>
+    
+    <!-- What I Like to Do -->
+    <section id="interests" style="background: var(--bg);">
+        <div class="container">
+            <h2 class="section-title">What I Like to Do</h2>
+            <p class="section-desc">The questions, problems, and creative pursuits that drive my work.</p>
+            
+            <div class="interests-content">
+                <p>I'm passionate about <strong>bridging the gap between simulation and reality</strong> — building embodied AI systems that generate expressive movement in digital spaces and translate that expressiveness to physical robots. My work repositions robotics as a medium for visual and performative art, emphasizing the interplay between computation, embodiment, and affect.</p>
+                
+                <p>I care about <strong>exploring the aesthetic and political dimensions of technology</strong>. With a background in biology and media studies, I create multimedia pieces that challenge perceptions of the digital and natural worlds through dynamic interactions. I'm fascinated by how machine learning, generative models, and computer vision can expand our understanding of what it means to be embodied in an increasingly digital age.</p>
+                
+                <p>What excites me most is <strong>the moment when code becomes experience</strong> — when a neural network trained in simulation produces movement that feels alive on a physical robot, when a generative model creates visual poetry that resonates emotionally, when an interactive 3D environment invites exploration of autonomous artificial life. I'm driven by questions like: <em>How does it move? How does it feel? What happens when the machine becomes disobedient?</em></p>
+                
+                <p>Beyond the technical, I'm invested in <strong>education and creative strategy</strong> — developing visual narratives, mentoring students, and building bridges between art and technology that make complex ideas accessible and compelling.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
     <section id="contact">
-        <h2>Contact</h2>
-        <p>Feel free to reach out for collaborations, opportunities, or to discuss my work in design, education, and AI research.</p>
-        <div class="contact-links">
-            <a href="mailto:Omarbatista1074@gmail.com">Email Me</a>
-            <a href="http://b.parsons.edu/~batio813/" target="_blank">Website</a>
-            <a href="https://linkedin.com" target="_blank">LinkedIn</a>
-            <a href="https://github.com/Omarindigo" target="_blank">GitHub</a>
-            <a href="https://vimeo.com" target="_blank">Vimeo</a>
+        <div class="container">
+            <h2 class="section-title">Contact</h2>
+            <p class="section-desc">Let's connect for collaborations, opportunities, or to discuss my work.</p>
+            
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="icon">📧</div>
+                    <h4>Email</h4>
+                    <a href="mailto:Omarbatista1074@gmail.com">Omarbatista1074@gmail.com</a>
+                </div>
+                <div class="contact-card">
+                    <div class="icon">🌐</div>
+                    <h4>Parsons Website</h4>
+                    <a href="http://b.parsons.edu/~batio813/" target="_blank">b.parsons.edu/~batio813</a>
+                </div>
+                <div class="contact-card">
+                    <div class="icon">💼</div>
+                    <h4>LinkedIn</h4>
+                    <a href="https://linkedin.com/in/omaribatista" target="_blank">linkedin.com/in/omaribatista</a>
+                </div>
+                <div class="contact-card">
+                    <div class="icon">🐙</div>
+                    <h4>GitHub</h4>
+                    <a href="https://github.com/Omarindigo" target="_blank">github.com/Omarindigo</a>
+                </div>
+                <div class="contact-card">
+                    <div class="icon">🎬</div>
+                    <h4>Vimeo</h4>
+                    <a href="https://vimeo.com/user207865109" target="_blank">vimeo.com/user207865109</a>
+                </div>
+            </div>
         </div>
     </section>
     
-    <footer style="text-align: center; padding: 20px; color: #7f8c8d; font-size: 0.9rem;">
-        <p>© 2026 Omar Batista | Hosted on GitHub Pages</p>
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Omar Batista | Hosted on GitHub Pages</p>
     </footer>
 </body>
 </html>
