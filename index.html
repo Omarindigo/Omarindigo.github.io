@@ -9,18 +9,18 @@
         /* Base Styles */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
-            --primary: #18458a;
-            --primary-dark: #0f2b5e;
-            --accent: #26619c;
-            --accent-hover: #1e4f8a;
-            --accent-light: #4a8bc2;
-            --text: #d0ddef;
-            --text-light: #8fa4c0;
-            --bg: #0b0191;
-            --card: rgba(11, 1, 145, 0.4);
-            --border: rgba(255,255,255,0.15);
-            --gradient: linear-gradient(135deg, #18458a, #26619c, #3a7bc8);
-            --gradient-subtle: linear-gradient(135deg, #0b0191, #1410b8);
+            --primary: #cc0000;
+            --primary-dark: #660000;
+            --accent: #ff6600;
+            --accent-hover: #cc5200;
+            --accent-light: #ff9933;
+            --text: #ffffff;
+            --text-light: #ffffff;
+            --bg: #0a0a0a;
+            --card: rgba(0, 0, 0, 0.6);
+            --border: rgba(255, 100, 0, 0.2);
+            --gradient: linear-gradient(135deg, #cc0000, #ff6600, #ff9933);
+            --gradient-subtle: linear-gradient(135deg, #0a0a0a, #1a1a1a);
         }
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -29,6 +29,9 @@
             background: var(--bg);
             margin: 0;
             overflow-x: hidden;
+            background-image:
+                radial-gradient(ellipse at 20% 50%, rgba(204, 0, 0, 0.03) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 50%, rgba(255, 102, 0, 0.03) 0%, transparent 50%);
         }
         .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
         
@@ -52,29 +55,30 @@
             gap: 12px;
             padding: 20px;
             flex-wrap: wrap;
-            background: rgba(11, 1, 145, 0.4);
+            background: var(--card);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(255,255,255,0.1);
         }
         .hero-nav a {
             padding: 8px 18px;
-            background: rgba(20, 10, 160, 0.5);
+            background: var(--primary-dark);
             color: #ffffff;
             text-decoration: none;
             border-radius: 6px;
             font-weight: 500;
             font-size: 0.9rem;
-            border: 1px solid rgba(80, 100, 220, 0.5);
-            transition: all 0.3s;
+            border: 1px solid var(--accent);
+            transition: all 0.5s;
             letter-spacing: 0.5px;
         }
         .hero-nav a:hover { background: rgba(30, 20, 190, 0.6); border-color: rgba(120, 140, 255, 0.7); }
         .hero-nav .download-btn {
-            background: rgba(30, 20, 190, 0.6);
-            border-color: rgba(120, 140, 255, 0.7);
+            background: var(--primary);
+            border-color: var(--accent);
             color: #ffffff;
             font-weight: 700;
+            box-shadow: 0 0 15px rgba(255, 102, 0, 0.3);
         }
         .hero-nav .download-btn:hover { background: rgba(40, 30, 210, 0.7); }
         .hero-video {
@@ -115,6 +119,7 @@
             background: none;
             -webkit-text-fill-color: #ffffff;
             line-height: 1.1;
+            text-shadow: 0 0 30px rgba(255, 102, 0, 0.3), 0 0 60px rgba(255, 102, 0, 0.1);
         }
         .hero-content .subtitle {
             font-size: 1.5rem;
@@ -124,6 +129,7 @@
             color: #ffffff;
             margin-top: 10px;
             margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(255, 102, 0, 0.2);
         }
         .hero-content .tagline {
             font-size: 1.05rem;
@@ -139,7 +145,16 @@
         }
         
         /* Sections */
-        section { padding: 60px 0; background: transparent; }
+        section { padding: 60px 0; background: transparent; position: relative; }
+        section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(ellipse at center, rgba(255, 102, 0, 0.03) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        section > .container { position: relative; z-index: 1; }
         .section-title {
             font-size: 2rem;
             font-weight: 800;
@@ -166,10 +181,12 @@
             top: 0;
             bottom: 0;
             width: 3px;
-            background: rgba(255,255,255,0.2);
+            background: var(--border);
             border-radius: 2px;
+            box-shadow: 0 0 5px rgba(255, 102, 0, 0.3);
         }
-        .timeline-item { position: relative; margin-bottom: 30px; padding: 20px; background: rgba(255,255,255,0.08); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.15); border-radius: 12px; }
+        .timeline-item { position: relative; margin-bottom: 30px; padding: 20px; background: rgba(255,255,255,0.08); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.15); border-radius: 12px; box-shadow: 0 0 20px rgba(255, 102, 0, 0.1), inset 0 0 15px rgba(0, 0, 0, 0.3); transition: box-shadow 0.5s; }
+        .timeline-item:hover { box-shadow: 0 0 30px rgba(255, 102, 0, 0.2), inset 0 0 20px rgba(0, 0, 0, 0.4); }
         .timeline-item::before {
             content: '';
             position: absolute;
@@ -178,9 +195,9 @@
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            background: rgba(255,255,255,0.6);
+            background: var(--accent);
             border: 3px solid rgba(11,1,145,0.9);
-            box-shadow: 0 0 8px rgba(255,255,255,0.3);
+            box-shadow: 0 0 15px rgba(255, 102, 0, 0.5);
         }
         .timeline-item h3 { color: #ffffff; font-size: 1.1rem; margin-bottom: 5px; }
         .timeline-item .meta { color: rgba(255,255,255,0.7); font-size: 0.9rem; font-weight: 600; margin-bottom: 8px; }
@@ -188,17 +205,24 @@
         
         /* Skills */
         .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-top: 30px; }
-        .skill-category { padding: 20px; background: rgba(255,255,255,0.08); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.15); border-radius: 12px; }
+        .skill-category { padding: 20px; background: rgba(255,255,255,0.08); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.15); border-radius: 12px; box-shadow: 0 0 25px rgba(255, 102, 0, 0.08); transition: box-shadow 0.7s; }
+        .skill-category:hover { box-shadow: 0 0 35px rgba(255, 102, 0, 0.15); }
         .skill-category h4 { color: #ffffff; margin-bottom: 10px; font-size: 1rem; }
         .skill-tag {
             display: inline-block;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 102, 0, 0.1);
             color: #ffffff;
             padding: 4px 10px;
             border-radius: 20px;
             font-size: 0.8rem;
             margin: 3px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 102, 0, 0.3);
+            box-shadow: 0 0 8px rgba(255, 102, 0, 0.1);
+            transition: all 0.5s;
+        }
+        .skill-tag:hover {
+            box-shadow: 0 0 15px rgba(255, 102, 0, 0.3);
+            background: rgba(255, 102, 0, 0.2);
         }
         
         /* Portfolio Section */
@@ -210,13 +234,16 @@
             border-radius: 12px;
             border: 1px solid rgba(255,255,255,0.15);
             overflow: hidden;
-            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+            transition: transform 0.7s, box-shadow 0.7s, border-color 0.7s;
+            box-shadow: 0 0 20px rgba(255, 102, 0, 0.05);
         }
+        .project-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.3), 0 0 35px rgba(255, 102, 0, 0.15); border-color: rgba(255,255,255,0.3); }
         .project-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.3); border-color: rgba(255,255,255,0.3); }
         .project-card .card-header {
             background: var(--gradient);
             padding: 25px 20px;
             color: white;
+            box-shadow: 0 5px 20px rgba(255, 102, 0, 0.1);
         }
         .project-card .card-header h3 { font-size: 1.3rem; margin-bottom: 5px; }
         .project-card .card-header .tech { font-size: 0.85rem; opacity: 0.8; }
@@ -266,7 +293,12 @@
             margin-bottom: 15px;
             border-radius: 12px;
             border: 1px solid rgba(255,255,255,0.15);
-            border-left: 4px solid rgba(255,255,255,0.5);
+            border-left: 4px solid var(--accent);
+            box-shadow: 0 0 20px rgba(255, 102, 0, 0.1);
+            transition: box-shadow 0.5s;
+        }
+        .pub-list li:hover {
+            box-shadow: 0 0 30px rgba(255, 102, 0, 0.2);
         }
         .pub-list li h4 { color: #ffffff; margin-bottom: 5px; }
         .pub-list li .venue { color: rgba(255,255,255,0.7); font-size: 0.9rem; font-weight: 600; margin-bottom: 8px; }
@@ -281,6 +313,7 @@
             border: 1px solid rgba(255,255,255,0.15);
             padding: 30px;
             border-radius: 12px;
+            box-shadow: 0 0 25px rgba(255, 102, 0, 0.08);
         }
         .interests-content p { color: rgba(255,255,255,0.9); margin-bottom: 15px; font-size: 1.05rem; }
         .interests-content strong { color: #ffffff; }
@@ -295,10 +328,12 @@
             border-radius: 12px;
             border: 1px solid rgba(255,255,255,0.15);
             text-align: center;
-            transition: transform 0.2s, border-color 0.3s;
+            transition: transform 0.5s, border-color 0.7s;
             position: relative;
             z-index: 1;
+            box-shadow: 0 0 20px rgba(255, 102, 0, 0.05);
         }
+        .contact-card:hover { transform: translateY(-3px); border-color: rgba(255,255,255,0.35); box-shadow: 0 0 35px rgba(255, 102, 0, 0.15); }
         .contact-card:hover { transform: translateY(-3px); border-color: rgba(255,255,255,0.35); }
         .contact-card .icon { font-size: 2rem; margin-bottom: 10px; color: #ffffff; }
         .contact-card h4 { color: #ffffff; margin-bottom: 5px; }
@@ -335,7 +370,12 @@
             padding: 25px;
             border-radius: 12px;
             border: 1px solid rgba(255,255,255,0.15);
-            border-top: 4px solid rgba(255,255,255,0.5);
+            border-top: 4px solid var(--primary);
+            box-shadow: 0 0 20px rgba(204, 0, 0, 0.1);
+            transition: box-shadow 0.5s;
+        }
+        .edu-card:hover {
+            box-shadow: 0 0 30px rgba(204, 0, 0, 0.2);
         }
         .edu-card h3 { color: #ffffff; margin-bottom: 5px; }
         .edu-card .degree { color: rgba(255,255,255,0.8); font-weight: 600; margin-bottom: 5px; }
@@ -782,10 +822,16 @@
     </section>
     
     <script>
-    const PX   = 32
+    const PX   = 31
     const STOPS = [
-        [3, 0, 30], [6, 2, 55], [10, 8, 80], [15, 20, 110],
-        [25, 40, 140], [40, 60, 170], [60, 90, 200], [90, 130, 230]
+        [5, 0, 0],     // Near-black
+        [25, 0, 0],    // Dark red
+        [60, 8, 0],    // Medium red
+        [100, 25, 0],  // Red-orange
+        [140, 50, 0],  // Deep orange
+        [160, 70, 5],  // Orange
+        [190, 100, 15],// Rich light orange
+        [220, 150, 40] // Deep pale orange
     ]
     let grid = []
     let heroCanvas
@@ -809,7 +855,7 @@
             for (let c = 0; c < COLS_N; c++) {
                 grid[r].push({
                     noiseOff: random(1000), noiseOff2: random(1000),
-                    phase: random(TWO_PI), speed: random(0.018, 0.055),
+                    phase: random(TWO_PI), speed: random(0.003, 0.017),
                     glitchT: 0, glitching: false
                 })
             }
@@ -834,27 +880,28 @@
     function draw() {
         clear()
 
-        const t = frameCount * 0.012
-        const glitchBar = random(1) < 0.06
+        const t = frameCount * 0.003
+
+        const glitchBar = random(1) < 0.03
         const glitchRow = floor(random(ROWS_N))
-        const glitchOffset = floor(random(-8, 8))
+        const glitchOffset = floor(random(-5, 5))
 
         for (let r = 0; r < ROWS_N; r++) {
             for (let c = 0; c < COLS_N; c++) {
                 const cell = grid[r][c]
-                const n1 = noise(c * 0.08 + t, r * 0.08)
-                const n2 = noise(c * 0.04, r * 0.04 + t * 0.7)
-                const n3 = noise(c * 0.15 + t * 0.3, r * 0.15 + t * 0.3)
-                const wave1 = sin(c * 0.18 + t * 2.2 + cell.phase) * 0.5 + 0.5
-                const wave2 = sin(r * 0.22 - t * 1.8 + cell.phase) * 0.5 + 0.5
-                const wave3 = sin((c + r) * 0.12 + t * 3.0) * 0.5 + 0.5
-                let val = (n1 * 0.25 + n2 * 0.2 + n3 * 0.15 + wave1 * 0.18 + wave2 * 0.14 + wave3 * 0.08)
-                const diagWave = sin((c * 0.3 - r * 0.2) + t * 2.5) * 0.1
+                const n1 = noise(c * 0.03 + t, r * 0.03)
+                const n2 = noise(c * 0.05, r * 0.05 + t * 0.3)
+                const n3 = noise(c * 0.07 + t * 0.5, r * 0.07 + t * 0.5)
+                const wave1 = sin(c * 0.05 + t * 1.3 + cell.phase) * 0.5 + 0.5
+                const wave2 = sin(r * 0.07 - t * 1.1 + cell.phase) * 0.5 + 0.5
+                const wave3 = sin((c + r) * 0.03 + t * 1.7) * 0.5 + 0.5
+                let val = (n1 * 0.13 + n2 * 0.11 + n3 * 0.07 + wave1 * 0.17 + wave2 * 0.13 + wave3 * 0.05)
+                const diagWave = sin((c * 0.11 - r * 0.07) + t * 1.3) * 0.07
                 val = constrain(val + diagWave, 0, 1)
 
-                if (!cell.glitching && random(1) < 0.0004) {
+                if (!cell.glitching && random(1) < 0.0001) {
                     cell.glitching = true
-                    cell.glitchT = random(8, 25)
+                    cell.glitchT = random(13, 31)
                 }
                 if (cell.glitching) {
                     val = random(1) < 0.5 ? 1 : 0
@@ -865,17 +912,17 @@
                 let drawC = c
                 if (glitchBar && r === glitchRow) {
                     drawC = constrain(c + glitchOffset, 0, COLS_N - 1)
-                    val = random(1) < 0.4 ? 1 - val : val
+                    val = random(1) < 0.3 ? 1 - val : val
                 }
 
-                const scanline = (r % 4 === 0) ? 0.75 : 1.0
+                const scanline = (r % 3 === 0) ? 0.85 : 1.0
                 const [rr, gg, bb] = gradCol(val)
-                const hueShift = noise(c * 0.05 + t * 0.3, r * 0.05 - t * 0.2)
-                const [hr, hg, hb] = gradCol((val + hueShift * 0.4) % 1)
-                const blendR = lerp(rr, hr, 0.5)
-                const blendG = lerp(gg, hg, 0.5)
-                const blendB = lerp(bb, hb, 0.5)
-                const alpha = map(val, 0, 1, 8, 140) * scanline
+                const hueShift = noise(c * 0.03 + t * 0.5, r * 0.03 - t * 0.7)
+                const [hr, hg, hb] = gradCol((val + hueShift * 0.3) % 1)
+                const blendR = lerp(rr, hr, 0.3)
+                const blendG = lerp(gg, hg, 0.3)
+                const blendB = lerp(bb, hb, 0.3)
+                const alpha = map(val, 0, 1, 5, 110) * scanline
                 fill(blendR, blendG, blendB, alpha)
                 rect(drawC * PX, r * PX, PX, PX)
             }
